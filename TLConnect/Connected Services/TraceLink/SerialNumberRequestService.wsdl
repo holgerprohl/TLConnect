@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="urn:tracelink:soap" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="SerialNumberRequestService" targetNamespace="urn:tracelink:soap" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://itestapi.tracelink.com:443/soap/snx/snrequest?xsd=1" namespace="urn:tracelink:soap" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://itestapi.tracelink.com:443/soap/snx/snrequest?xsd=2" namespace="http://tracelink.com/snx" />
+    </xsd:schema>
+  </types>
+  <message name="serialNumbersRequest">
+    <part name="parameters" element="tns:serialNumbersRequest" />
+  </message>
+  <message name="serialNumbersRequestResponse">
+    <part name="parameters" element="tns:serialNumbersRequestResponse" />
+  </message>
+  <portType name="snrequest">
+    <operation name="serialNumbersRequest">
+      <input wsam:Action="urn:tracelink:soap:snrequest:serialNumbersRequestRequest" message="tns:serialNumbersRequest" />
+      <output wsam:Action="urn:tracelink:soap:snrequest:serialNumbersRequestResponse" message="tns:serialNumbersRequestResponse" />
+    </operation>
+  </portType>
+  <binding name="snrequestPortBinding" type="tns:snrequest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="serialNumbersRequest">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="SerialNumberRequestService">
+    <port name="snrequestPort" binding="tns:snrequestPortBinding">
+      <soap:address location="https://itestapi.tracelink.com:443/soap/snx/snrequest" />
+    </port>
+  </service>
+</definitions>

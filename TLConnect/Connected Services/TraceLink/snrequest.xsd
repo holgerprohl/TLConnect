@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:tracelink:soap" xmlns:ns1="http://tracelink.com/snx" targetNamespace="urn:tracelink:soap" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://itestapi.tracelink.com:443/soap/snx/snrequest?xsd=2" namespace="http://tracelink.com/snx" />
+  <xs:element name="serialNumbersRequest" type="tns:serialNumbersRequest" />
+  <xs:element name="serialNumbersRequestResponse" type="tns:serialNumbersRequestResponse" />
+  <xs:element name="snResponse" type="tns:SNResponse" />
+  <xs:complexType name="serialNumbersRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SendingSystem" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceivingSystem" type="xs:string" />
+      <xs:element minOccurs="0" name="IdType" type="tns:idType" />
+      <xs:element minOccurs="0" name="EncodingType" type="tns:encodingType" />
+      <xs:element minOccurs="0" name="Size" type="xs:int" />
+      <xs:element minOccurs="0" name="ObjectKey" type="tns:objectKey" />
+      <xs:element minOccurs="0" name="RequestRandomizedNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ReferenceDocuments" type="ns1:ReferenceDocuments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="objectKey">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" type="tns:objectIdentifierType" />
+      <xs:element minOccurs="0" name="Value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="serialNumbersRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SNResponse" type="tns:SNResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SNResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReceivingSystem" type="xs:string" />
+      <xs:element minOccurs="0" name="SendingSystem" type="xs:string" />
+      <xs:element minOccurs="0" name="ActionCode" type="xs:string" />
+      <xs:element minOccurs="0" name="EncodingType" type="tns:encodingType" />
+      <xs:element minOccurs="0" name="IDType" type="tns:idType" />
+      <xs:element minOccurs="0" name="Interval" type="tns:interval" />
+      <xs:element minOccurs="0" name="ObjectKey" type="tns:objectKey" />
+      <xs:element minOccurs="0" name="ReferenceDocuments" type="ns1:ReferenceDocuments" />
+      <xs:element minOccurs="0" name="RandomizedNumberList" type="tns:randomizedNumberList" />
+      <xs:element minOccurs="0" name="RfidException" type="tns:errorMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="interval">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumberFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberTo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="randomizedNumberList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SerialNo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="errorMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="idType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GS1_SER" />
+      <xs:enumeration value="CN_SER" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="encodingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SGTIN" />
+      <xs:enumeration value="SSCC" />
+      <xs:enumeration value="CN_EDMC" />
+      <xs:enumeration value="NTIN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="objectIdentifierType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GTIN" />
+      <xs:enumeration value="NTIN" />
+      <xs:enumeration value="COMPANY_PREFIX" />
+      <xs:enumeration value="CN_RESCODE" />
+      <xs:enumeration value="CN_SUBTYPE_LEVEL_RATIO" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
