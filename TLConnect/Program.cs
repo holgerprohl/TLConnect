@@ -17,7 +17,7 @@ namespace TLConnect
             string tlRequestId = "201807180900";
             string tlGtin = "02768000000014";
             string tlUser = "holger.prohl@mt.com";
-            string tlPassword = "##Hjk12gf$";
+            string tlPassword = "xxx";
             int tlAmount = 100;
 
             Console.WriteLine("Tracelink Connect");
